@@ -1,4 +1,4 @@
-package goreload
+package main
 
 // import (
 // 	"fmt"
@@ -14,38 +14,57 @@ package goreload
 // 		fmt.Println("Usage: go run . input.txt output.txt")
 // 		return
 // 	}
+
 // 	text, err := os.ReadFile(os.Args[1])
 // 	if err != nil {
 // 		fmt.Println("Error reading input file:", err)
 // 		return
 // 	}
-// 	tokens := tokenize(string(text))
-// 	result := processTokens(tokens)
-// 	output := assemble(result)
-// 	output = handleQuotes(output)
-// 	output = handleAAn(output)
-// 	err = os.WriteFile(os.Args[2], []byte(output), 0o644)
+
+// 	lines := strings.Split(string(text), "\n")
+// 	var resultLines []string
+// 	for _, line := range lines {
+// 		tokens := tokenize(line)
+// 		result := processTokens(tokens)
+// 		output := assemble(result)
+// 		output = fixPunctuationSpacing(output)
+// 		output = handleQuotes(output)
+// 		output = handleAAn(output)
+// 		resultLines = append(resultLines, output)
+// 	}
+
+// 	finalOutput := strings.Join(resultLines, "\n")
+// 	err = os.WriteFile(os.Args[2], []byte(finalOutput), 0o644)
 // 	if err != nil {
 // 		fmt.Println("Error writing output file:", err)
 // 	}
 // }
 
 // func tokenize(text string) []string {
-// 	re := regexp.MustCompile(`(\w+|\(hex\)|\(bin\)|\(up\)|\(low\)|\(cap\)|\(up,\s*\d+\)|\(low,\s*\d+\)|\(cap,\s*\d+\)|[.,!?;:]+|\.\.\.|\S+)`)
+// 	// Обновленное регулярное выражение для правильного выделения команд внутри кавычек
+// 	re := regexp.MustCompile(`(\(hex\)|\(bin\)|\(up\)|\(low\)|\(cap\)|\(up,\s*\d+\)|\(low,\s*\d+\)|\(cap,\s*\d+\)|\.\.\.|['"]|[.,!?;:]+|\w+|[\S]+)`)
 // 	return re.FindAllString(text, -1)
 // }
 
 // func processTokens(tokens []string) []string {
 // 	var result []string
+
 // 	for i := 0; i < len(tokens); i++ {
-// 		if strings.HasPrefix(tokens[i], "(") && strings.HasSuffix(tokens[i], ")") {
-// 			marker := strings.Trim(tokens[i], "()")
+// 		token := tokens[i]
+// 		if strings.HasPrefix(token, "(") && strings.HasSuffix(token, ")") {
+// 			marker := strings.Trim(token, "()")
 // 			parts := strings.Split(marker, ",")
 // 			cmd := strings.TrimSpace(parts[0])
 // 			n := 1
+
 // 			if len(parts) > 1 {
-// 				n, _ = strconv.Atoi(strings.TrimSpace(parts[1]))
+// 				var err error
+// 				n, err = strconv.Atoi(strings.TrimSpace(parts[1]))
+// 				if err != nil {
+// 					n = 1
+// 				}
 // 			}
+
 // 			words := findLastNWords(result, n)
 // 			for _, idx := range words {
 // 				switch cmd {
@@ -62,11 +81,11 @@ package goreload
 // 				case "low":
 // 					result[idx] = strings.ToLower(result[idx])
 // 				case "cap":
-// 					result[idx] = strings.Title(strings.ToLower(result[idx]))
+// 					result[idx] = toTitleCase(strings.ToLower(result[idx]))
 // 				}
 // 			}
 // 		} else {
-// 			result = append(result, tokens[i])
+// 			result = append(result, token)
 // 		}
 // 	}
 // 	return result
@@ -94,7 +113,7 @@ package goreload
 // func assemble(result []string) string {
 // 	var b strings.Builder
 // 	for i, t := range result {
-// 		if i > 0 && isWord(t) && !strings.ContainsAny(result[i-1], ".,!?;:") {
+// 		if i > 0 && isWord(t) {
 // 			b.WriteString(" ")
 // 		}
 // 		b.WriteString(t)
@@ -102,16 +121,51 @@ package goreload
 // 	return b.String()
 // }
 
+// func fixPunctuationSpacing(text string) string {
+// 	text = regexp.MustCompile(`\s*(\.\.\.)\s*`).ReplaceAllString(text, "$1")
+// 	text = regexp.MustCompile(`\s*([.,!?;:]+)\s*`).ReplaceAllString(text, "$1")
+// 	text = regexp.MustCompile(`([.,!?;:])(\w)`).ReplaceAllString(text, "$1 $2")
+// 	return text
+// }
+
 // func handleQuotes(output string) string {
-// 	return regexp.MustCompile(`'\s*(.*?)\s*'`).ReplaceAllString(output, "'$1'")
+// 	re := regexp.MustCompile(`'\s*(.*?)\s*'`)
+// 	return re.ReplaceAllString(output, "'$1'")
 // }
 
 // func handleAAn(output string) string {
-// 	return regexp.MustCompile(`\b(a|A)\s+([aeiouhAEIOUH]\w*)`).ReplaceAllStringFunc(output, func(m string) string {
+// 	re := regexp.MustCompile(`\b(a|A)\s+(\w+)`)
+// 	return re.ReplaceAllStringFunc(output, func(m string) string {
 // 		parts := strings.Fields(m)
-// 		if strings.ToLower(parts[0]) == "a" {
-// 			return "an " + parts[1]
+// 		word := parts[1]
+// 		if isVowelSound(word) {
+// 			if parts[0] == "A" {
+// 				return "An " + word
+// 			}
+// 			return "an " + word
 // 		}
-// 		return "An " + parts[1]
+// 		return parts[0] + " " + word
 // 	})
 // }
+
+// func isVowelSound(word string) bool {
+// 	vowelSounds := []string{"a", "e", "i", "o", "u", "h"}
+// 	lowerWord := strings.ToLower(word)
+// 	for _, v := range vowelSounds {
+// 		if strings.HasPrefix(lowerWord, v) && (v != "h" || lowerWord == "hour" || lowerWord == "heir" || lowerWord == "honest") {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
+
+// // uefhrdiuberig
+// func toTitleCase(s string) string {
+// 	runes := []rune(s)
+// 	if len(runes) > 0 {
+// 		runes[0] = unicode.ToTitle(runes[0])
+// 	}
+// 	return string(runes)
+// }
+
+// делает команды внутри ковычик
