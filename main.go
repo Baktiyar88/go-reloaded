@@ -21,7 +21,7 @@ func main() {
 		return
 	}
 
-	lines := strings.Split(string(text), "\n") // Разделяем текст на строки
+	lines := strings.Split(string(text), "\n")
 	var resultLines []string
 	for _, line := range lines {
 		tokens := tokenize(line)
@@ -33,7 +33,6 @@ func main() {
 		resultLines = append(resultLines, output)
 	}
 
-	// Собираем результат с сохранением новых строк
 	finalOutput := strings.Join(resultLines, "\n")
 	err = os.WriteFile(os.Args[2], []byte(finalOutput), 0o644)
 	if err != nil {
@@ -41,13 +40,11 @@ func main() {
 	}
 }
 
-// Разбивает строку на токены
 func tokenize(text string) []string {
-	re := regexp.MustCompile(`(\w+|\(hex\)|\(bin\)|\(up\)|\(low\)|\(cap\)|\(up,\s*\d+\)|\(low,\s*\d+\)|\(cap,\s*\d+\)|[.,!?;:]+|\.\.\.|\S+)`)
+	re := regexp.MustCompile(`(\w+|\(hex\)|\(bin\)|\(up\)|\(low\)|\(cap\)|\(up,\s*\d+\)|\(low,\s*\d+\)|\(cap,\s*\d+\)|\.\.\.|[.,!?;:]+|\S+)`)
 	return re.FindAllString(text, -1)
 }
 
-// Обрабатывает токены (применяет hex/bin, up/low/cap и их варианты с числами)
 func processTokens(tokens []string) []string {
 	var result []string
 
@@ -92,7 +89,6 @@ func processTokens(tokens []string) []string {
 	return result
 }
 
-// Возвращает индексы последних n слов
 func findLastNWords(result []string, n int) []int {
 	indices := []int{}
 	for i := len(result) - 1; i >= 0 && len(indices) < n; i-- {
@@ -103,7 +99,6 @@ func findLastNWords(result []string, n int) []int {
 	return indices
 }
 
-// Проверяет, является ли токен словом
 func isWord(token string) bool {
 	for _, c := range token {
 		if unicode.IsLetter(c) || unicode.IsDigit(c) {
@@ -113,11 +108,10 @@ func isWord(token string) bool {
 	return false
 }
 
-// Собирает токены в строку
 func assemble(result []string) string {
 	var b strings.Builder
 	for i, t := range result {
-		if i > 0 && isWord(t) && !strings.ContainsAny(result[i-1], ".,!?;:") {
+		if i > 0 && isWord(t) {
 			b.WriteString(" ")
 		}
 		b.WriteString(t)
@@ -125,45 +119,44 @@ func assemble(result []string) string {
 	return b.String()
 }
 
-// Исправляет пробелы у знаков препинания
 func fixPunctuationSpacing(text string) string {
-	text = regexp.MustCompile(`\s*(\.\.\.)\s*`).ReplaceAllString(text, "$1 ")
-	text = regexp.MustCompile(`\s*([.!?]{2,})\s*`).ReplaceAllString(text, "$1 ")
-	text = regexp.MustCompile(`\s*([.,!?;:])\s*`).ReplaceAllString(text, "$1 ")
+	text = regexp.MustCompile(`\s*(\.\.\.)\s*`).ReplaceAllString(text, "$1")
+	text = regexp.MustCompile(`\s*([.,!?;:]+)\s*`).ReplaceAllString(text, "$1")
+	text = regexp.MustCompile(`([.,!?;:])(\w)`).ReplaceAllString(text, "$1 $2")
 	return text
 }
 
-// Обрабатывает кавычки
 func handleQuotes(output string) string {
-	return regexp.MustCompile(`'\s*(\S+(?:\s+\S+)*)\s*'`).ReplaceAllString(output, "'$1'")
+	re := regexp.MustCompile(`'\s*(.*?)\s*'`)
+	return re.ReplaceAllString(output, "'$1'")
 }
 
-// Исправляет "a" на "an"
 func handleAAn(output string) string {
 	re := regexp.MustCompile(`\b(a|A)\s+(\w+)`)
 	return re.ReplaceAllStringFunc(output, func(m string) string {
 		parts := strings.Fields(m)
 		word := parts[1]
 		if isVowelSound(word) {
+			if parts[0] == "A" {
+				return "An " + word
+			}
 			return "an " + word
 		}
-		return "a " + word
+		return parts[0] + " " + word
 	})
 }
 
-// Проверяет, начинается ли слово с гласного звука
 func isVowelSound(word string) bool {
-	vowelSounds := []string{"a", "e", "i", "o", "u", "honest", "hour", "heir"}
+	vowelSounds := []string{"a", "e", "i", "o", "u", "h"}
 	lowerWord := strings.ToLower(word)
 	for _, v := range vowelSounds {
-		if strings.HasPrefix(lowerWord, v) {
+		if strings.HasPrefix(lowerWord, v) && (v != "h" || lowerWord == "hour" || lowerWord == "heir" || lowerWord == "honest") {
 			return true
 		}
 	}
 	return false
 }
 
-// Преобразует слово в формат с заглавной буквы
 func toTitleCase(s string) string {
 	runes := []rune(s)
 	if len(runes) > 0 {
