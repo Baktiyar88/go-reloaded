@@ -1,5 +1,6 @@
 package main
 
+// тест прошел
 import (
 	"fmt"
 	"os"
