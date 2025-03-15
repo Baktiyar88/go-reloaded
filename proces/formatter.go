@@ -19,30 +19,54 @@ func HandleQuotes(output string) string {
 	return re.ReplaceAllString(output, "'$1'")
 }
 
-// HandleAAn исправляет артикли "a" и "an"
-func HandleAAn(output string) string {
-	re := regexp.MustCompile(`\b(a|A)\s+(\w+)`)
-	return re.ReplaceAllStringFunc(output, func(m string) string {
-		parts := strings.Fields(m)
-		word := parts[1]
-		if isVowelSound(word) {
-			if parts[0] == "A" {
-				return "An " + word
-			}
-			return "an " + word
-		}
-		return parts[0] + " " + word
-	})
-}
-
 // isVowelSound проверяет, начинается ли слово с гласного звука
 func isVowelSound(word string) bool {
-	vowelSounds := []string{"a", "e", "i", "o", "u", "h"}
 	lowerWord := strings.ToLower(word)
-	for _, v := range vowelSounds {
-		if strings.HasPrefix(lowerWord, v) && (v != "h" || lowerWord == "hour" || lowerWord == "heir" || lowerWord == "honest") {
-			return true
-		}
+
+	if strings.HasPrefix(lowerWord, "a") ||
+		strings.HasPrefix(lowerWord, "e") ||
+		strings.HasPrefix(lowerWord, "i") ||
+		strings.HasPrefix(lowerWord, "o") ||
+		strings.HasPrefix(lowerWord, "u") {
+		return true
+	}
+
+	if strings.HasPrefix(lowerWord, "hour") ||
+		strings.HasPrefix(lowerWord, "heir") ||
+		strings.HasPrefix(lowerWord, "honest") ||
+		strings.HasPrefix(lowerWord, "honour") {
+		return true
 	}
 	return false
+}
+
+// correctArticle возвращает правильный артикл в зависимости от слова и регистра
+func correctArticle(article, word string) string {
+	// Определяем, является ли первый символ артикля заглавным
+	isUpper := strings.ToUpper(article[:1]) == article[:1]
+
+	if isVowelSound(word) {
+		if isUpper {
+			return "An"
+		}
+		return "an"
+	} else {
+		if isUpper {
+			return "A"
+		}
+		return "a"
+	}
+}
+
+// HandleAAn корректирует артикли в тексте
+func HandleAAn(text string) string {
+	// Регулярное выражение для поиска артикля и следующего слова
+	re := regexp.MustCompile(`\b(a|an|A|An|aN|AN)\s+(\w+)`)
+	return re.ReplaceAllStringFunc(text, func(match string) string {
+		parts := strings.Fields(match)
+		article := parts[0]
+		word := parts[1]
+		correctedArticle := correctArticle(article, word)
+		return correctedArticle + " " + word
+	})
 }
