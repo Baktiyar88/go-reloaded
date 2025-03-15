@@ -99,4 +99,11 @@ fff ffff first.second dsfsd (Up (low), 12345678)
 (bin)
 one two 'three four five' six (up, 12345678)one two three four five. six (up, 12345678)
 one two three four five.six (up, 12345678)one two three four A(hex)(bin) 10 (bin)
-A (hex)
+A     (hex), (hex)(hex)    (hex, 2)
+aaaa aaaa aa    , (up, 100)
+don't don'  t   don  't   don  '  t don'   t
+' bek menin balam 
+
+a a a a a a 
+an an a an an 
+An an a A An an

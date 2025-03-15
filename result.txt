@@ -99,4 +99,11 @@ fff ffff first. second dsfsd (up, 12345678)
 
 ONE TWO'THREE FOUR FIVE' SIX ONE TWO THREE FOUR FIVE. SIX
 ONE TWO THREE FOUR FIVE. SIX one two three four 2 2
-10
+22,(hex, 2)
+AAAA AAAA AA,
+don't don' t don't don' t don' t
+' bek menin balam
+
+an a an a an a
+an an an an an
+An an an A An an
