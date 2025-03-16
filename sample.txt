@@ -1,109 +1,106 @@
-"7D (hex) (hex) (hex)  files were added"
-It has been 10 (bin) years
-I was sitting over    !? . there ,and then           BAMM !  !  !
-I was thinking .  .    . You were right
-I am exactly how they describe me: '    awesome ' asdasdas
-
-1010 (bin)(bin)(bin)
-
-As Elton John said: ' I am the most well-known homosexual in the world '
-
-There it was. A amazing rock!a   sdasdsd
-a(hex)(bin)
-asdsdsd (up, 101)
-ad 
-10(bin)
- "   I can' t believe it'  s already November     ,       " 'she said'.
-       I can't believe it'  s already November   ,   she said.
-I was sitting over there ,and then BAMM !!
-I was thinking... You were right
-hello,there
-" hello   "     "    there"
-hi 'hi' hi
-hi' hi' hi
-hi 'hi ' hi
-hi ' hi ' hi
-hi 'hi
-  ' hi '   hi'
-"""""""""""""""""""""
-''''''''''''''''''''
-'
-A' a(hex)(bin)
-a apple an Apple
-A apple An apple
-a APPLE an APPLE
-A APPLE AN APPLE
-a cat an cat
-A cat An cat
-a CAT aN CAT
-A CAT AN CAT
-A Apple A Cat
-A Apple A Cat
-a a a a a
-A A A A
-"1E (hex) files were added"
-30 files were added
-It has been 10 (bin) years
-It has been 2 years
-Ready, set, go (up) !
-Ready, set, GO!
-I should stop SHOUTING (low)
-I should stop shouting
-Welcome to the Brooklyn bridge (cap)
-Welcome to the Brooklyn Bridge
-This is so exciting (up, 2)
-This is SO EXCITING
-I was sitting over there ,and then BAMM !!
-I was sitting over there, and then BAMM!!
-I was thinking ... You were right
-I was thinking... You were right
-I am exactly how they describe me: ' awesome '
-I am exactly how they describe me: 'awesome'
-As Elton John said: ' I am the most well-known homosexual in the world '
-As Elton John said: 'I am the most well-known homosexual in the world'
-There it was. A amazing rock!
-There it was. An amazing rock!
-it (cap) was the best of times, it was the worst of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair.
-It was the best of times, it was the worst of TIMES, it was the age of wisdom, It Was The Age Of Foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, it was the winter of despair.
-Simply add 42 (hex) and 10 (bin) and you will see the result is 68.
-Simply add 66 and 2 and you will see the result is 68.
-There is no greater agony than bearing a untold story inside you.
-There is no greater agony than bearing an untold story inside you.
-Punctuation tests are ... kinda boring ,what do you think !?
-Punctuation tests are... kinda boring, don't you think!?
-If I make you BREAKFAST IN BED(low,3)just say thank you instead of: how (cap) did you get in my house (up, 2) ?
-If I make you breakfast in bed just say thank you instead of: How did you get in MY HOUSE?
-I have to pack 101 (bin) outfits. Packed 1a (hex) just to be sure
-I have to pack 5 outfits. Packed 26 just to be sure
-Don not be sad ,because sad backwards is das . And das not good
-Don not be sad, because sad backwards is das. And das not good
-harold wilson (cap, 2) : ' I am a optimist ,but a optimist who carries a raincoat . '
-Harold Wilson: 'I am an optimist, but an optimist who carries a raincoat.'
-fdlgksdkkd (up) (cap)
-
-sdjfvhskfs skfjjolsefjlosj.... snjgfjvnsoljfsoi (up,5)
-
-If I make you BREAKFAST IN BED (low, 3) just say thank you instead of: how (cap) did you get in my house (up, 2) ?If I make you breakfast in bed just say thank you instead of: How did you get in MY HOUSE?
-I have to pack 101 (bin) outfits. Packed 1a (hex) just to be sureI have to pack 5 outfits. Packed 26 just to be sure
-Don not be sad ,because sad backwards is das . And das not goodDon not be sad, because sad backwards is das. And das not good
-harold wilson (cap, 2) : ' I am a optimist ,but a optimist who carries a raincoat . 'Harold Wilson: 'I am an optimist, but an optimist who carries a raincoat.' (up)
-
-'',''.'.''.''.'.'''.'.'.'.'.'.'.'.'.''.''.'.'.''
-a (hex) (low) (bin) (DDD) (low)
-aaa a a afd afd. (up, 1)aaa a a afd afd. (up) 
-aaa a a afd afd, (up, 1)aaa a a afd afd!    (up, 1)
-aaa a a afd afd' (up, 1)
-fff ffff first.second dsfsd (Up (low), 12345678)
-. (up). (low)
-. (low)(hex)
-(bin)
-one two 'three four five' six (up, 12345678)one two three four five. six (up, 12345678)
-one two three four five.six (up, 12345678)one two three four A(hex)(bin) 10 (bin)
-A     (hex), (hex)(hex)    (hex, 2)
-aaaa aaaa aa    , (up, 100)
-don't don'  t   don  't   don  '  t don'   t
-' bek menin balam 
-
-a a a a a a 
-an an a an an 
-An an a A An an
+"7D (hex) (hex) (hex) files were added"  # "125 files were added"
+"It has been 10 (bin) years"  # "It has been 2 years"
+"I was sitting over    !? . there ,and then           BAMM !  !  !"  # "I was sitting over!? there, and then BAMM!!"
+"I was thinking .  .    . You were right"  # "I was thinking... You were right"
+"I am exactly how they describe me: '    awesome ' asdasdas"  # "I am exactly how they describe me: 'awesome' asdasdas"
+"1010 (bin)(bin)(bin)"  # "10"
+"As Elton John said: ' I am the most well-known homosexual in the world '"  # "As Elton John said: 'I am the most well-known homosexual in the world'"
+"There it was. A amazing rock!a   sdasdsd"  # "There it was. An amazing rock! a sdasdsd"
+"a(hex)(bin)"  # "a"
+"asdsdsd (up, 101)"  # "ASDSDSD"
+"ad"  # "ad"
+"10(bin)"  # "2"
+"   I can' t believe it'  s already November     ,       " 'she said'."  # "I can't believe it's already November, " 'she said'."
+"I can't believe it'  s already November   ,   she said."  # "I can't believe it's already November, she said."
+"I was sitting over there ,and then BAMM !!"  # "I was sitting over there, and then BAMM!!"
+"I was thinking... You were right"  # "I was thinking... You were right"
+"hello,there"  # "hello, there"
+" hello   "     "    there"  # "hello" "there"
+"hi 'hi' hi"  # "hi 'hi' hi"
+"hi' hi' hi"  # "hi 'hi' hi"
+"hi 'hi ' hi"  # "hi 'hi' hi"
+"hi ' hi ' hi"  # "hi 'hi' hi"
+"hi 'hi"  # "hi 'hi'"
+"' hi '   hi'"  # "'hi' hi'"
+"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""  # "\"\""
+"''''''''''''''''''''"  # "''"
+"'"  # "'"
+"A' a(hex)(bin)"  # "A 'a'"
+"a apple an Apple"  # "an apple an Apple"
+"A apple An apple"  # "An apple An apple"
+"a APPLE an APPLE"  # "an APPLE an APPLE"
+"A APPLE AN APPLE"  # "An APPLE AN APPLE"
+"a cat an cat"  # "a cat an cat"
+"A cat An cat"  # "A cat An cat"
+"a CAT aN CAT"  # "a CAT an CAT"
+"A CAT AN CAT"  # "A CAT AN CAT"
+"A Apple A Cat"  # "An Apple A Cat"
+"a a a a a"  # "a a a a a"
+"A A A A"  # "A A A A"
+"1E (hex) files were added"  # "30 files were added"
+"30 files were added"  # "30 files were added"
+"It has been 10 (bin) years"  # "It has been 2 years"
+"Ready, set, go (up) !"  # "Ready, set, GO!"
+"I should stop SHOUTING (low)"  # "I should stop shouting"
+"Welcome to the Brooklyn bridge (cap)"  # "Welcome to the Brooklyn Bridge"
+"This is so exciting (up, 2)"  # "This is SO EXCITING"
+"I was sitting over there ,and then BAMM !!"  # "I was sitting over there, and then BAMM!!"
+"I was thinking ... You were right"  # "I was thinking... You were right"
+"I am exactly how they describe me: ' awesome '"  # "I am exactly how they describe me: 'awesome'"
+"As Elton John said: ' I am the most well-known homosexual in the world '"  # "As Elton John said: 'I am the most well-known homosexual in the world'"
+"There it was. A amazing rock!"  # "There it was. An amazing rock!"
+"it (cap) was the best of times, it was the worst of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."  # "It was the best of times, it was the worst of TIMES, it was the age of wisdom, It Was The Age Of Foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, it was the winter of despair."
+"Simply add 42 (hex) and 10 (bin) and you will see the result is 68."  # "Simply add 66 and 2 and you will see the result is 68."
+"There is no greater agony than bearing a untold story inside you."  # "There is no greater agony than bearing an untold story inside you."
+"Punctuation tests are ... kinda boring ,what do you think !?"  # "Punctuation tests are... kinda boring, what do you think!?"
+"If I make you BREAKFAST IN BED(low,3)just say thank you instead of: how (cap) did you get in my house (up, 2) ?"  # "If I make you breakfast in bed just say thank you instead of: How did you get in MY HOUSE?"
+"I have to pack 101 (bin) outfits. Packed 1a (hex) just to be sure"  # "I have to pack 5 outfits. Packed 26 just to be sure"
+"Don not be sad ,because sad backwards is das . And das not good"  # "Don not be sad, because sad backwards is das. And das not good"
+"harold wilson (cap, 2) : ' I am a optimist ,but a optimist who carries a raincoat . '"  # "Harold Wilson: 'I am an optimist, but an optimist who carries a raincoat.'"
+"fdlgksdkkd (up) (cap)"  # "FDLGKSDKKD"
+"sdjfvhskfs skfjjolsefjlosj.... snjgfjvnsoljfsoi (up,5)"  # "sdjfvhskfs skfjjolsefjlosj... SNJGFJVNSOLJFSOI"
+"Add 1F (hex) and 11 (bin) to get the answer."  # "Add 31 and 3 to get the answer."
+"FF (hex) files are missing."  # "255 files are missing."
+"1011 (bin) days have passed."  # "11 days have passed."
+"A (hex) B (hex) C (hex) errors."  # "10 11 12 errors."
+"Invalid 1G (hex) value."  # "Invalid 1G value."
+"This is a test (up)."  # "This is a TEST."
+"Make me happy (low, 2) now."  # "Make me HAPPY now."
+"hello world test (cap, 3)!"  # "Hello World Test!"
+"RUNNING FAST NOW (low, 5)."  # "RUNNING FAST NOW."
+"One (up, 0) two."  # "One two."
+"Hi ,there .How are you ?"  # "Hi, there. How are you?"
+"Wait ... What !?"  # "Wait... What!?"
+"No , way , Jose !"  # "No, way, Jose!"
+"Test . . . End"  # "Test... End"
+"Hello ,, world ! !"  # "Hello, world!!"
+"She said ' hello world ' today."  # "She said 'hello world' today."
+"It’s ' a ' beautiful day."  # "It’s 'a' beautiful day."
+"Quote ' me ' ' please '!"  # "Quote 'me' 'please'!"
+"Empty ' ' space."  # "Empty '' space."
+"Multiple ' one two three ' words."  # "Multiple 'one two three' words."
+"A elephant walks by."  # "An elephant walks by."
+"A hour later."  # "An hour later."
+"A orange is tasty."  # "An orange is tasty."
+"A CAT and a DOG."  # "A CAT and a DOG."
+"A igloo stands alone."  # "An igloo stands alone."
+"Add 2A (hex) to 101 (bin) now (up, 2)!"  # "Add 42 to 5 NOW!"
+"I saw a UFO (cap) ... really (low)?"  # "I saw an UFO... REALLY?"
+"He shouted ' stop ' (up) there ,now !"  # "He shouted 'STOP' there, now!"
+"Wait a minute (low, 2) ,please (cap)."  # "Wait a MINUTE, Please."
+"10 (bin) files (up) and 1B (hex) errors (cap, 2)."  # "2 FILES and 27 Errors."
+" (hex) empty."  # " (hex) empty."
+"Word (up, 1000) end."  # "WORD end."
+"... !? ..."  # "...!?..."
+"' ' ' ' ' '"  # "'' '' ''"
+"A (bin) B (hex) C."  # "A B C."
+"Test ' nested (up) quote ' now (low, 2)."  # "Test 'NESTED quote' NOW."
+"A amazing (cap) story ... told by 1F (hex) people (up, 3)."  # "An Amazing story... told by 31 PEOPLE."
+"Don’t stop ,believe (low) ' me ' (up) !"  # "Don’t stop, BELIEVE 'ME'!"
+"A ' epic ' tale of 1100 (bin) heroes (cap, 2)."  # "An 'epic' tale of 12 Heroes."
+"Wait ... what (up, 2) ,a (hex) surprise (low)!"  # "Wait... WHAT, a surprise!"
+"No(hex)space(bin)here(up)."  # "No space HERE."
+"Multiple (up)(low)(cap) commands."  # "Multiple commands."
+"Broken (up, -1) text."  # "Broken text."
+"Text with ' ' ' extra ' quotes '."  # "Text with '' 'extra' quotes'."
+"A a a (up, 3) end."  # "A A A end."

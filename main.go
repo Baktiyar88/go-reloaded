@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"go-reloaded/proces"
@@ -17,7 +18,21 @@ func main() {
 	// Чтение входного файла
 	text, err := os.ReadFile(os.Args[1])
 	if err != nil {
-		fmt.Println("Error reading input file:", err)
+		fmt.Println("Error chteniya vkhodnogo fayla:", err)
+		return
+	}
+	inputFile := os.Args[1]
+	outputFile := os.Args[2]
+
+	if inputFile == outputFile {
+		fmt.Printf("Error: vhodny faile dolzhny raznymi ")
+	} else if _, err := os.Stat(inputFile); os.IsNotExist(err) {
+		fmt.Printf("Error: Vkhodnoy fayl '%s' ne sushchestvuyet\n", inputFile)
+	} else if filepath.Ext(inputFile) != ".txt" {
+		fmt.Println("Error: Vkhodnoy fayl dolzhen imet' rasshireniye .txt ")
+		os.Exit(1)
+	} else if filepath.Ext(outputFile) != ".txt" {
+		fmt.Println("Error: Vykhodnoy fayl dolzhen imet' rasshireniye .txt ")
 		return
 	}
 
@@ -37,6 +52,6 @@ func main() {
 	// Запись результата в выходной файл
 	err = os.WriteFile(os.Args[2], []byte(finalOutput), 0o644)
 	if err != nil {
-		fmt.Println("Error writing output file:", err)
+		fmt.Println("Error zapis' vykhodnogo fayla:", err)
 	}
 }
