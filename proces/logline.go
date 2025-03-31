@@ -73,8 +73,11 @@ func ProcessTokens(tokens []string) []string {
 func Assemble(tokens []string) string {
 	var b strings.Builder
 	for i, t := range tokens {
-		if i > 0 && isWord(t) {
-			b.WriteString(" ")
+		if i > 0 {
+			prev := tokens[i-1]
+			if (isWord(t) || t == "'") && (isWord(prev) || prev == "'") {
+				b.WriteString(" ")
+			}
 		}
 		b.WriteString(t)
 	}

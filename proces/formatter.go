@@ -16,7 +16,11 @@ func FixPunctuationSpacing(text string) string {
 // HandleQuotes обрабатывает кавычки
 func HandleQuotes(output string) string {
 	re := regexp.MustCompile(`'\s*(.*?)\s*'`)
-	return re.ReplaceAllString(output, "'$1'")
+	return re.ReplaceAllStringFunc(output, func(match string) string {
+		innerText := re.FindStringSubmatch(match)[1]
+		trimmedText := strings.TrimSpace(innerText)
+		return "'" + trimmedText + "'"
+	})
 }
 
 // isVowelSound проверяет, начинается ли слово с гласного звука
