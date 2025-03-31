@@ -7,9 +7,19 @@ import (
 
 // FixPunctuationSpacing исправляет пробелы вокруг пунктуации
 func FixPunctuationSpacing(text string) string {
-	text = regexp.MustCompile(`\s*(\.\.\.)\s*`).ReplaceAllString(text, "$1")
-	text = regexp.MustCompile(`\s*([.,!?;:]+)\s*`).ReplaceAllString(text, "$1")
-	text = regexp.MustCompile(`([.,!?;:])(\w)`).ReplaceAllString(text, "$1 $2")
+	// text = regexp.MustCompile(`\s*(\.\.\.)\s*`).ReplaceAllString(text, "$1")
+	// text = regexp.MustCompile(`\s*([.,!?;:]+)\s*`).ReplaceAllString(text, "$1")
+	// text = regexp.MustCompile(`([.,!?;:])(\w)`).ReplaceAllString(text, "$1 $2")
+	placeholder := "___ELLIPSIS___"
+
+	// Заменяем многоточие на маркер, чтобы защитить его
+	text = regexp.MustCompile(`\s*(\.\.\.)\s*`).ReplaceAllString(text, placeholder+" ")
+
+	// Обрабатываем остальные знаки пунктуации
+	text = regexp.MustCompile(`\s*([.,!?;:])\s*`).ReplaceAllString(text, "$1 ")
+
+	// Восстанавливаем многоточие
+	text = strings.ReplaceAll(text, placeholder, "...")
 	return text
 }
 
