@@ -2,105 +2,178 @@ package proces
 
 import (
 	"regexp"
-	"strconv"
+
 	"strings"
 )
 
-// ProcessLine обрабатывает строку, применяя все необходимые преобразования
-func ProcessLine(line string) string {
-	tokens := Tokenize(line)
-	tokens = ProcessTokens(tokens)
-	output := Assemble(tokens)
-	output = FixPunctuationSpacing(output)
-	output = HandleQuotes(output)
-	output = HandleAAn(output)
-	return output
+func ProscessPuncQ(input string) string {
+	input = FormatPunc(input)
+	input = FixQuotes(input)
+
+	return input
 }
 
-// Tokenize разбивает строку на токены
-func Tokenize(text string) []string {
-	re := regexp.MustCompile(`(\(hex\)|\(bin\)|\(up\)|\(low\)|\(cap\)|\(up,\s*\d+\)|\(low,\s*\d+\)|\(cap,\s*\d+\)|\.\.\.|['"]|[.,!?;:]+|\w+|[\S]+)`)
-	return re.FindAllString(text, -1)
+func FormatPunc(input string) string {
+	re := regexp.MustCompile(`\s*([.,!?;:])\s*`)
+	input = re.ReplaceAllString(input, "$1")
+
+	re = regexp.MustCompile(`([.,!?:;])([a-zA-Z0-9-])`)
+	input = re.ReplaceAllString(input, "$1 $2")
+
+	input = strings.Join(strings.Fields(input), " ")
+
+	return strings.TrimSpace(input)
+
 }
 
-// ProcessTokens обрабатывает токены, применяя команды
-func ProcessTokens(tokens []string) []string {
-	var result []string
+func FixQuotes(input string) string {
+	input = fixDoubleQuotes(input)
+	input = fixSingleQuotes(input)
 
-	for i := 0; i < len(tokens); i++ {
-		token := tokens[i]
-		if strings.HasPrefix(token, "(") && strings.HasSuffix(token, ")") {
-			marker := strings.Trim(token, "()")
-			parts := strings.Split(marker, ",")
-			cmd := strings.TrimSpace(parts[0])
-			n := 1
+	return input
+}
 
-			if len(parts) > 1 {
-				var err error
-				n, err = strconv.Atoi(strings.TrimSpace(parts[1]))
-				if err != nil {
-					n = 1
-				}
+func fixDoubleQuotes(input string) string {
+	re := regexp.MustCompile(`"\s*(.*?)\s*"`)
+	input = re.ReplaceAllString(input, `"$1"`)
+
+	re = regexp.MustCompile(`(["])\s+([\'\w])`)
+	input = re.ReplaceAllString(input, `$1$2`)
+	re = regexp.MustCompile(`([\'\w])\s+(["])`)
+	input = re.ReplaceAllString(input, `$1$2`)
+
+	quoteCount := strings.Count(input, `"`)
+	var result []rune
+	inQuote := false
+
+	for i := 0; i < len(input); i++ {
+		currnetChar := rune(input[i])
+
+		if currnetChar == '"' {
+			if quoteCount%2 != 0 && strings.Count(string(result), `"`) == quoteCount-1 {
+				result = append(result, currnetChar, ' ')
+				continue
 			}
 
-			words := findLastNWords(result, n)
-			for _, idx := range words {
-				switch cmd {
-				case "hex":
-					if num, err := strconv.ParseInt(result[idx], 16, 64); err == nil {
-						result[idx] = strconv.FormatInt(num, 10)
-					}
-				case "bin":
-					if num, err := strconv.ParseInt(result[idx], 2, 64); err == nil {
-						result[idx] = strconv.FormatInt(num, 10)
-					}
-				case "up":
-					result[idx] = strings.ToUpper(result[idx])
-				case "low":
-					result[idx] = strings.ToLower(result[idx])
-				case "cap":
-					result[idx] = ToTitleCase(strings.ToLower(result[idx]))
+			if !inQuote {
+				inQuote = true
+				if i > 0 && input[i-1] != ' ' && input[i-1] != '"' && input[i-1] != '\'' {
+					result = append(result, ' ')
+
+				}
+				result = append(result, currnetChar)
+			} else {
+				inQuote = false
+				result = append(result, currnetChar)
+
+				if i+1 < len(input) && !strings.ContainsAny(string(input[i+1]), ` .,;!?`) {
+					result = append(result, ' ')
+
 				}
 			}
 		} else {
-			result = append(result, token)
+			result = append(result, currnetChar)
+
 		}
+
 	}
-	return result
+
+	return strings.TrimSpace(string(result))
+
 }
 
-// Assemble собирает токены в строку
-func Assemble(tokens []string) string {
-	var b strings.Builder
-	for i, t := range tokens {
-		if i > 0 {
-			prev := tokens[i-1]
-			if (isWord(t) || t == "'") && (isWord(prev) || prev == "'") {
-				b.WriteString(" ")
+func fixSingleQuotes(input string) string {
+
+	re := regexp.MustCompile(`'\s*(.*?)\s*'`)
+	input = re.ReplaceAllString(input, "'$1'")
+
+	re = regexp.MustCompile(`(['])\s+([\'\w])`)
+	input = re.ReplaceAllString(input, `$1$2`)
+	re = regexp.MustCompile(`([\'\w])\s+(['])`)
+	input = re.ReplaceAllString(input, `$1$2`)
+
+	validSuffixes := map[string]bool{"t": true, "ll": true, "ve": true, "m": true, "s": true, "d": true, "re": true}
+
+	quoteCount := strings.Count(input, "'")
+	var result []rune
+	inQuote := false
+
+	for i := 0; i < len(input); i++ {
+		currentChar := rune(input[i])
+		if currentChar == '\'' {
+
+			if i > 0 && i+1 < len(input) {
+
+				prevWordEnd := i - 1
+				for prevWordEnd >= 0 && isLetter(rune(input[prevWordEnd])) {
+					prevWordEnd--
+				}
+				prevWord := input[prevWordEnd+1 : i]
+
+				nextWordStart := i + 1
+				for nextWordStart < len(input) && isLetter(rune(input[nextWordStart])) {
+					nextWordStart++
+				}
+				nextSuffix := input[i+1 : nextWordStart]
+
+				if isWord(prevWord) && validSuffixes[nextSuffix] {
+					result = append(result, currentChar)
+					continue
+				}
 			}
+
+			if quoteCount == 1 {
+				result = append(result, currentChar)
+
+				if i+1 < len(input) && !strings.ContainsAny(string(input[i+1]), ` .,;!?`) {
+					result = append(result, ' ')
+				}
+				continue
+			}
+
+			if quoteCount%2 != 0 && strings.Count(string(result), `'`) == quoteCount-1 && !inQuote {
+				result = append(result, currentChar)
+
+				if i+1 < len(input) && !strings.ContainsAny(string(input[i+1]), ` .,;!?`) {
+					result = append(result, ' ')
+				}
+				continue
+			}
+
+			if !inQuote {
+				inQuote = true
+
+				if i > 0 && input[i-1] != ' ' && input[i-1] != '\'' && input[i-1] != '"' {
+					result = append(result, ' ')
+				}
+				result = append(result, currentChar)
+			} else {
+
+				inQuote = false
+				result = append(result, currentChar)
+
+				if i+1 < len(input) && !strings.ContainsAny(string(input[i+1]), ` .,;!?`) {
+					result = append(result, ' ')
+				}
+			}
+		} else {
+
+			result = append(result, currentChar)
 		}
-		b.WriteString(t)
 	}
-	return b.String()
+
+	return strings.TrimSpace(string(result))
 }
 
-// findLastNWords находит последние N слов в результате
-func findLastNWords(result []string, n int) []int {
-	indices := []int{}
-	for i := len(result) - 1; i >= 0 && len(indices) < n; i-- {
-		if isWord(result[i]) {
-			indices = append([]int{i}, indices...)
-		}
-	}
-	return indices
+func isLetter(ch rune) bool {
+	return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')
 }
 
-// isWord проверяет, является ли токен словом
-func isWord(token string) bool {
-	for _, c := range token {
-		if (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') {
-			return true
+func isWord(s string) bool {
+	for _, ch := range s {
+		if !isLetter(ch) {
+			return false
 		}
 	}
-	return false
+	return len(s) > 0
 }
