@@ -9,70 +9,70 @@ import (
 )
 
 func main() {
-	// Check if the correct number of arguments is provided
+	// Проверяем, указано ли правильное количество аргументов
 	if len(os.Args) < 2 || len(os.Args) > 3 {
-		fmt.Println("Usage: go run . <input_file.txt> [output_file.txt]")
+		fmt.Println("Использование: go run . <input_file.txt> [output_file.txt]")
 		return
 	}
 
-	// Get input file path from command-line arguments
+	// Получаем путь к входному файлу из аргументов командной строки
 	inputFile := os.Args[1]
 
-	// Check if the input file has a .txt extension
+	// Проверяем, имеет ли входной файл расширение .txt
 	if filepath.Ext(inputFile) != ".txt" {
-		fmt.Println("Error: Input file must have a .txt extension.")
+		fmt.Println("Ошибка: Входной файл должен иметь расширение .txt.")
 		return
 	}
 
-	// Determine the output file path
+	// Определяем путь к выходному файлу
 	var outputFile string
 	if len(os.Args) == 3 {
 		outputFile = os.Args[2]
 	} else {
-		// Default output file name if not provided
+		// Имя выходного файла по умолчанию, если не указано
 		outputFile = "result.txt"
 	}
 
-	// Ensure the output file has a .txt extension
+	// Проверяем, имеет ли выходной файл расширение .txt
 	if filepath.Ext(outputFile) != ".txt" {
-		fmt.Println("Error: Output file must have a .txt extension.")
+		fmt.Println("Ошибка: Выходной файл должен иметь расширение .txt.")
 		return
 	}
 
-	// Ensure input and output files are not the same
+	// Проверяем, что входной и выходной файлы не совпадают
 	if filepath.Clean(inputFile) == filepath.Clean(outputFile) {
-		fmt.Println("Error: Input and output files must not be the same.")
+		fmt.Println("Ошибка: Входной и выходной файлы не должны быть одинаковыми.")
 		return
 	}
 
-	// Read the input file
+	// Читаем входной файл
 	data, err := os.ReadFile(inputFile)
 	if err != nil {
-		fmt.Println("Error reading file:", err)
+		fmt.Println("Ошибка при чтении файла:", err)
 		return
 	}
 
-	// Split the input text into lines
+	// Разделяем входной текст на строки
 	lines := strings.Split(string(data), "\n")
 
-	// Process each line
+	// Обрабатываем каждую строку
 	for i, textLine := range lines {
-		textLine = proces.ProcessTrans(textLine) // Process uppercase conversion
-		textLine = proces.ReplaceNums(textLine)
-		textLine = proces.ProscessPuncQ(textLine)
-		textLine = proces.Articl(textLine) // Process articles (commented out for now)
-		lines[i] = textLine                // Update the line with processed text
+		textLine = proces.ProcessTrans(textLine)  // Преобразуем регистр текста
+		textLine = proces.ReplaceNums(textLine)   // Преобразуем числа
+		textLine = proces.ProscessPuncQ(textLine) // Обрабатываем пунктуацию и кавычки
+		textLine = proces.Articl(textLine)
+		lines[i] = textLine // Обновляем строку обработанным текстом
 	}
 
-	// Join the processed lines back into a single string with newlines
+	// Объединяем обработанные строки обратно в одну с переносами строк
 	outputText := strings.Join(lines, "\n")
 
-	// Write the processed text to the output file
+	// Записываем обработанный текст в выходной файл
 	err = os.WriteFile(outputFile, []byte(outputText), 0644)
 	if err != nil {
-		fmt.Println("Error writing file:", err)
+		fmt.Println("Ошибка при записи файла:", err)
 		return
 	}
 
-	fmt.Println("Text processing complete. Check the output file:", outputFile)
+	fmt.Println("Обработка текста завершена. Проверьте выходной файл:", outputFile)
 }
