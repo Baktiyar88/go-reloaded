@@ -134,11 +134,8 @@ The project includes comprehensive processing functions that can be unit tested.
 - Implements state machines for quote processing
 - Handles edge cases for contractions and punctuation groups
 
-## License
-[Your License]
-
 ## Author
-[Your Name]
+Baktiyar
 
 ---
 
