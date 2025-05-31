@@ -71,17 +71,6 @@ go run . sample.txt result.txt
 - Example: `"a amazing"` → `"an amazing"`
 - Example: `"a hour"` → `"an hour"`
 
-## File Structure
-```
-go-reloaded/
-├── main.go
-├── proces/
-│   ├── punctuation.go    # Punctuation and quote processing
-│   ├── transform.go      # Case transformations
-│   ├── numbers.go        # Number system conversions
-│   └── articles.go       # Article corrections
-└── README.md
-```
 
 ## Example Usage
 
